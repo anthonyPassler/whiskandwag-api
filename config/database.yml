@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: lekkaeats_api_development
+  database: whisk_and_wag_api_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: lekkaeats_api
+  #username: whisk_and_wag_api
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: lekkaeats_api_test
+  database: whisk_and_wag_api_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: lekkaeats_api_production
-  username: lekkaeats_api
-  password: <%= ENV["LEKKAEATS_API_DATABASE_PASSWORD"] %>
+  database: whisk_and_wag_api_production
+  username: whisk_and_wag_api
+  password: <%= ENV["whisk_and_wag_API_DATABASE_PASSWORD"] %>
