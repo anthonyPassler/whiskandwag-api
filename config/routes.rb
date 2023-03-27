@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipes, only: %i[index show]
       resources :dogs, only: %i[index show]
+      resources :reviews, only: %i[index show]
       resources :sessions, only: %i[create destroy]
     end
   end

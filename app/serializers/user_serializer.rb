@@ -8,4 +8,5 @@ class UserSerializer < ApplicationSerializer
   attribute(:telephone)
 
   has_many(:dogs)
+  has_many(:reviews)
 end
