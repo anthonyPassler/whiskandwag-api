@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_182308) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_191106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_182308) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_dogs_on_user_id"
+  end
+
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.decimal "total_price", precision: 10, scale: 2
+    t.integer "portions"
+    t.integer "portion_weight_in_grams"
+    t.integer "frequency_in_weeks"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "recipes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -78,5 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_182308) do
   end
 
   add_foreign_key "dogs", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "users"
 end

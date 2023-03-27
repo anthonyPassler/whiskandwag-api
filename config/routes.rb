@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :recipes, only: %i[index show]
       resources :dogs, only: %i[index show]
       resources :reviews, only: %i[index show]
+      resources :orders, only: %i[index show]
       resources :sessions, only: %i[create destroy]
     end
   end
