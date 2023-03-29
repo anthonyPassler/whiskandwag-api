@@ -1,1 +1,17 @@
 require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.2
+  TargetRailsVersion: 7
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'config/**/*'
+    - 'spec/rails_helper.rb'
+
+Style/StringLiterals:
+  EnforcedStyle: 'double_quotes'
+
+Style/Documentation:
+  Enabled: false

@@ -1,16 +1,22 @@
-class Api::V1::DogsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+# frozen_string_literal: true
 
-  def index
-    dogs = policy_scope(Dog)
+module Api
+  module V1
+    class DogsController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index show]
 
-    render json: DogSerializer.new(dogs)
-  end
+      def index
+        dogs = policy_scope(Dog)
 
-  def show
-    dog = Dog.find(params[:id])
-    authorize dog
+        render json: DogSerializer.new(dogs)
+      end
 
-    render json: DogSerializer.new(dog)
+      def show
+        dog = Dog.find(params[:id])
+        authorize dog
+
+        render json: DogSerializer.new(dog)
+      end
+    end
   end
 end

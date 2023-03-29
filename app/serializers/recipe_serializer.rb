@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecipeSerializer < ApplicationSerializer
   attribute(:name)
   attribute(:kcal_per_100g)

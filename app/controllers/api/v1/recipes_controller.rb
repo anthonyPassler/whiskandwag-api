@@ -1,16 +1,22 @@
-class Api::V1::RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+# frozen_string_literal: true
 
-  def index
-    recipes = policy_scope(Recipe)
+module Api
+  module V1
+    class RecipesController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index show]
 
-    render json: RecipeSerializer.new(recipes)
-  end
+      def index
+        recipes = policy_scope(Recipe)
 
-  def show
-    recipe = Recipe.find(params[:id])
-    authorize recipe
+        render json: RecipeSerializer.new(recipes)
+      end
 
-    render json: RecipeSerializer.new(recipe)
+      def show
+        recipe = Recipe.find(params[:id])
+        authorize recipe
+
+        render json: RecipeSerializer.new(recipe)
+      end
+    end
   end
 end

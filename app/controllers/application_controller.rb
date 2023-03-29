@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   include Pundit::Authorization
   before_action :authenticate_user!
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
-
+  after_action :verify_authorized, except: :index # rubocop:disable Rails/LexicallyScopedActionFilter
+  after_action :verify_policy_scoped, only: :index # rubocop:disable Rails/LexicallyScopedActionFilter
 
   rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found

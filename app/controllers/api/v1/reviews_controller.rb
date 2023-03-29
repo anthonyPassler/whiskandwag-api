@@ -1,17 +1,23 @@
-class Api::V1::ReviewsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+# frozen_string_literal: true
 
-  def index
-    reviews = policy_scope(Review)
+module Api
+  module V1
+    class ReviewsController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index show]
 
-    render json: ReviewSerializer.new(reviews)
-  end
+      def index
+        reviews = policy_scope(Review)
 
-  def show
-    review = Review.find(params[:id])
+        render json: ReviewSerializer.new(reviews)
+      end
 
-    authorize Review
+      def show
+        review = Review.find(params[:id])
 
-    render json: ReviewSerializer.new(review)
+        authorize Review
+
+        render json: ReviewSerializer.new(review)
+      end
+    end
   end
 end
