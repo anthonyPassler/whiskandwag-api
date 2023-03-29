@@ -1,16 +1,22 @@
-class Api::V1::OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+# frozen_string_literal: true
 
-  def index
-    orders = policy_scope(Order)
+module Api
+  module V1
+    class OrdersController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index show]
 
-    render json: OrderSerializer.new(orders)
-  end
+      def index
+        orders = policy_scope(Order)
 
-  def show
-    order = Order.find(params[:id])
-    authorize order
+        render json: OrderSerializer.new(orders)
+      end
 
-    render json: OrderSerializer.new(order)
+      def show
+        order = Order.find(params[:id])
+        authorize order
+
+        render json: OrderSerializer.new(order)
+      end
+    end
   end
 end

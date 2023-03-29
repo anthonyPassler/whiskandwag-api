@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DogPolicy < ApplicationPolicy
   def show?
     true

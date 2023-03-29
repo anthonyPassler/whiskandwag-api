@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DogSerializer < ApplicationSerializer
   attribute(:name)
   attribute(:breed)

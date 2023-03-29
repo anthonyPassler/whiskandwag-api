@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewPolicy < ApplicationPolicy
   def show?
     true
