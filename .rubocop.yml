@@ -11,6 +11,7 @@ AllCops:
     - 'tmp/**/*'
     - 'config/**/*'
     - 'spec/rails_helper.rb'
+    - 'Guardfile'
 
 Style/StringLiterals:
   EnforcedStyle: 'double_quotes'
