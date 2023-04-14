@@ -66,3 +66,7 @@ group :development do
   # gem "spring"
   gem "guard-rspec"
 end
+
+group :test do
+  gem "pundit-matchers", "~> 1.8.4"
+end
