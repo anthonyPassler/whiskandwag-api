@@ -280,6 +280,10 @@ GEM
       awesome_print (> 1.0.0)
       rspec (> 3.0.0)
     rspec-support (3.11.1)
+    rswag (2.8.0)
+      rswag-api (= 2.8.0)
+      rswag-specs (= 2.8.0)
+      rswag-ui (= 2.8.0)
     rswag-api (2.8.0)
       railties (>= 3.1, < 7.1)
     rswag-specs (2.8.0)
@@ -348,9 +352,8 @@ DEPENDENCIES
   rails (~> 7.0.2)
   rspec-rails
   rspec-snapshot
-  rswag-api
+  rswag
   rswag-specs
-  rswag-ui
   rubocop
   rubocop-rails
   rubocop-rspec
