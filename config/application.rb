@@ -15,6 +15,12 @@ module WhiskAndWagApi
       system("bundle exec rubocop -A --fail-level=E #{files.shelljoin}", exception: true)
     end
 
+    if Rails.env.test?
+      RSpec.configure do |config|
+        config.swagger_dry_run = false
+      end
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -31,3 +37,5 @@ module WhiskAndWagApi
     config.api_only = true
   end
 end
+
+require_relative '../lib/csp_middleware'

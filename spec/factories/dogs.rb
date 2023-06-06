@@ -2,10 +2,12 @@
 
 FactoryBot.define do
   factory :dog do
+    id { SecureRandom.uuid }
     name { Faker::Name.first_name }
     breed { Faker::Creature::Dog.breed }
-    weight { rand(30) }
-    age { rand(20) }
-    gender { %w[female male].sample }
+
+    weight { 20 }
+    age { 8 }
+    gender { "female" }
   end
 end

@@ -31,7 +31,8 @@ gem "pundit"
 # gem "bcrypt", "~> 3.1.7"
 gem "dry-validation"
 gem "jsonapi-serializer"
-gem "rswag"
+gem "rswag-api"
+gem "rswag-ui"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -43,7 +44,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem "rack-cors"
 
 group :rubocop do
   gem "rubocop", require: false
@@ -58,6 +59,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "rspec-rails"
+  gem "rspec-snapshot"
   gem "rswag-specs"
 end
 
