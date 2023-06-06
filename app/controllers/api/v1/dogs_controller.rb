@@ -3,7 +3,7 @@
 module API
   module V1
     class DogsController < ApplicationController
-      skip_before_action :authenticate_user!, only: %i[index show create]
+      skip_before_action :authenticate_user!, only: %i[index show create destroy]
 
       def index
         dogs = policy_scope(Dog)
@@ -25,6 +25,19 @@ module API
         ).result
 
         render json: DogSerializer.new(dog)
+      end
+
+      def destroy
+        dog = Dog.find(params[:id])
+        authorize dog
+
+        dog.destroy!
+
+        head :no_content
+      end
+      # TODO: Remove this method when authentication is implemented
+      def current_user
+        User.first
       end
     end
   end

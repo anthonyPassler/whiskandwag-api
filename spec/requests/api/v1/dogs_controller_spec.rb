@@ -6,13 +6,16 @@ RSpec.describe "api/v1/dogs", type: :request do
   path "/api/v1/dogs" do
     get("list dogs") do
       response(200, "successful") do
-        let(:dog) { create(:dog) }
+        let(:user) { create(:user) }
+        let(:dog) { create(:dog, user:) }
+        let(:dog2) { create(:dog, user:) }
 
         include_context "with integration test"
       end
     end
 
     post("create dog") do
+      description "Creates a dog"
       consumes "application/json"
       parameter name: :dog, in: :body, schema: {
         type: :object,
@@ -65,6 +68,26 @@ RSpec.describe "api/v1/dogs", type: :request do
         let(:id) { "invalid" }
 
         include_context "with integration test"
+      end
+    end
+
+    delete("destroy dog") do
+      description "Destroys a dog"
+      produces "application/json"
+      parameter name: :id, in: :path, type: :string
+
+      response(204, "no content") do
+        let(:user) { create(:user) }
+        let(:dog) { create(:dog, user:) }
+        let(:id) { dog.id }
+
+        run_test!
+      end
+
+      response(404, "not found") do
+        let(:id) { "invalid" }
+
+        run_test!
       end
     end
   end

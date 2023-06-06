@@ -16,6 +16,7 @@
       },
       "post": {
         "summary": "create dog",
+        "description": "Creates a dog",
         "parameters": [
 
         ],
@@ -76,6 +77,28 @@
         "responses": {
           "200": {
             "description": "successful"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "destroy dog",
+        "description": "Destroys a dog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
           },
           "404": {
             "description": "not found"
