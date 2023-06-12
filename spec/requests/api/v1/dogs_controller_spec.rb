@@ -91,7 +91,7 @@ RSpec.describe "api/v1/dogs", type: :request do
               }
             }
           }
-        },
+        }
       }
       produces "application/json"
 

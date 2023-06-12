@@ -45,6 +45,7 @@ module API
 
         head :no_content
       end
+
       # TODO: Remove this method when authentication is implemented
       def current_user
         User.first

@@ -3,8 +3,9 @@
 require "rails_helper"
 
 RSpec.describe Dog::Update, type: :service do
-  subject(:service) { described_class.call(current_user: current_user, id: dog.id, attributes: attributes) }
-  let(:dog) { create(:dog, name: "Luke", user: user) }
+  subject(:service) { described_class.call(current_user:, id: dog.id, attributes:) }
+
+  let(:dog) { create(:dog, name: "Luke", user:) }
   let(:user) { create(:user) }
 
   shared_examples "updates the dog" do
@@ -34,7 +35,7 @@ RSpec.describe Dog::Update, type: :service do
           weight: 10,
           age: 5,
           allergies: ["gluten"],
-          kcal_per_day: 1000,
+          kcal_per_day: 1000
         }
       end
 
@@ -70,7 +71,7 @@ RSpec.describe Dog::Update, type: :service do
             weight: 10,
             age: 5,
             allergies: ["gluten"],
-            kcal_per_day: 1000,
+            kcal_per_day: 1000
           }
         end
 
@@ -92,7 +93,7 @@ RSpec.describe Dog::Update, type: :service do
             weight: 10,
             age: 5,
             allergies: ["gluten"],
-            kcal_per_day: 1000,
+            kcal_per_day: 1000
           }
         end
 
