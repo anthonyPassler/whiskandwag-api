@@ -3,6 +3,7 @@ require:
   - 'rubocop-rails'
 
 AllCops:
+  NewCops: disable
   TargetRubyVersion: 3.2
   TargetRailsVersion: 7
   Exclude:
@@ -12,6 +13,7 @@ AllCops:
     - 'config/**/*'
     - 'spec/rails_helper.rb'
     - 'Guardfile'
+    - 'vendor/bundle/**/*'
 
 Style/StringLiterals:
   EnforcedStyle: 'double_quotes'
