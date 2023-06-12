@@ -71,6 +71,47 @@ RSpec.describe "api/v1/dogs", type: :request do
       end
     end
 
+    patch("updates a dog") do
+      description "Updates a dog"
+      consumes "application/json"
+      parameter name: :id, in: :path, type: :string
+      parameter name: :dog, in: :body, schema: {
+        type: :object,
+        properties: {
+          data: {
+            type: :object,
+            properties: {
+              id: { type: :string },
+              attributes: {
+                type: :object,
+                properties: {
+                  name: { type: :string },
+                  breed: { type: :string }
+                }
+              }
+            }
+          }
+        },
+      }
+      produces "application/json"
+
+      response(200, "successful") do
+        let(:dog_to_update) { create(:dog) }
+        let(:id) { dog_to_update.id }
+        let(:dog) { { data: { attributes: { name: "Fido", breed: "Labrador" } } } }
+
+        include_context "with integration test"
+      end
+
+      response(422, "unprocessable entity") do
+        let(:dog_to_update) { create(:dog) }
+        let(:id) { dog_to_update.id }
+        let(:dog) { { data: { attributes: { name: nil, breed: nil } } } }
+
+        include_context "with integration test"
+      end
+    end
+
     delete("destroy dog") do
       description "Destroys a dog"
       produces "application/json"

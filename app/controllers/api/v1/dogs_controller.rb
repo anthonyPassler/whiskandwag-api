@@ -3,7 +3,7 @@
 module API
   module V1
     class DogsController < ApplicationController
-      skip_before_action :authenticate_user!, only: %i[index show create destroy]
+      skip_before_action :authenticate_user!, only: %i[index show create update destroy]
 
       def index
         dogs = policy_scope(Dog)
@@ -21,6 +21,16 @@ module API
       def create
         dog = Dog::Create.call(
           current_user:,
+          attributes:
+        ).result
+
+        render json: DogSerializer.new(dog)
+      end
+
+      def update
+        dog = Dog::Update.call(
+          current_user:,
+          id: params[:id],
           attributes:
         ).result
 
