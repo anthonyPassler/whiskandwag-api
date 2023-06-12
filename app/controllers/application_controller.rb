@@ -3,13 +3,21 @@
 class ApplicationController < ActionController::API
   include Pundit::Authorization
   before_action :authenticate_user!
-  after_action :verify_authorized, except: :index # rubocop:disable Rails/LexicallyScopedActionFilter
-  after_action :verify_policy_scoped, only: :index # rubocop:disable Rails/LexicallyScopedActionFilter
 
   rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ApplicationSchema::ValidationSchemaError, with: :unprocessable_entity
+  rescue_from ApplicationService::ServiceError, with: :unprocessable_entity
 
   private
+
+  def attributes
+    request.request_parameters.dig("data", "attributes")
+  end
+
+  def relationships
+    request.request_parameters.dig("data", "relationships")
+  end
 
   def user_not_authorized(exception)
     render json: {
@@ -19,5 +27,9 @@ class ApplicationController < ActionController::API
 
   def not_found(exception)
     render json: { error: exception.message }, status: :not_found
+  end
+
+  def unprocessable_entity(exception)
+    render json: { error: exception.message }, status: :unprocessable_entity
   end
 end

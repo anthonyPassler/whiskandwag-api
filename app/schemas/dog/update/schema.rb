@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Dog
-  class Create
+  class Update
     class Schema < BaseSchema
       json do
-        required(:name).filled(:string)
+        optional(:name).filled(:string)
         optional(:breed).maybe(:string)
         optional(:weight).filled(:integer, lt?: 1000)
         optional(:age).filled(:integer, lt?: 1000)

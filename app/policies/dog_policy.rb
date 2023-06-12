@@ -5,9 +5,23 @@ class DogPolicy < ApplicationPolicy
     anonymous? || user_is_owner?
   end
 
+  def update?
+    show?
+  end
+
+  def create?
+    true
+  end
+
+  def destroy?
+    user.present? && user_is_owner?
+  end
+
   class Scope < Scope
     def resolve
-      scope.all
+      return scope.none if user.nil?
+
+      scope.where(user:)
     end
   end
 
