@@ -3,8 +3,8 @@
 class ApplicationService
   include Pundit::Authorization
 
-  def self.call(**kwargs, &block)
-    new(**kwargs, &block).call
+  def self.call(**kwargs, &)
+    new(**kwargs, &).call
   end
 
   def initialize(**kwargs)

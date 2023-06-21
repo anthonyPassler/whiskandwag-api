@@ -46,7 +46,7 @@ module API
         head :no_content
       end
 
-      # TODO: Remove this method when authentication is implemented
+      # TODO: Remove this method when authentication is implemented - will ber added as a microservice
       def current_user
         User.first
       end
