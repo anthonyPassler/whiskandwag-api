@@ -2,7 +2,7 @@
 
 require "swagger_helper"
 
-RSpec.describe "api/v1/dogs", type: :request do
+RSpec.describe "api/v1/dogs" do
   path "/api/v1/dogs" do
     get("list dogs") do
       response(200, "successful") do

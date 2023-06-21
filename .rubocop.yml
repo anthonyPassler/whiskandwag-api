@@ -29,3 +29,7 @@ RSpec/MultipleExpectations:
 
 RSpec/NestedGroups:
   Max: 8
+
+Rails/DeprecatedActiveModelErrorsMethods:
+  Exclude:
+    - 'app/schemas/application_schema.rb'
