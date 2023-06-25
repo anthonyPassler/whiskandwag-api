@@ -33,3 +33,6 @@ RSpec/NestedGroups:
 Rails/DeprecatedActiveModelErrorsMethods:
   Exclude:
     - 'app/schemas/application_schema.rb'
+
+RSpec/LetSetup:
+  Enabled: false

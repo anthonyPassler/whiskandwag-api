@@ -12,14 +12,18 @@ module API
       end
 
       def show
-        dog = Dog.find(params[:id])
-        authorize dog
+        dog = Record::Get.call(
+          model: Dog,
+          current_user:,
+          id: params[:id]
+        ).result
 
         render json: DogSerializer.new(dog)
       end
 
       def create
-        dog = Dog::Create.call(
+        dog = Record::Create.call(
+          model: Dog,
           current_user:,
           attributes:
         ).result
@@ -28,7 +32,8 @@ module API
       end
 
       def update
-        dog = Dog::Update.call(
+        dog = Record::Update.call(
+          model: Dog,
           current_user:,
           id: params[:id],
           attributes:
@@ -38,10 +43,11 @@ module API
       end
 
       def destroy
-        dog = Dog.find(params[:id])
-        authorize dog
-
-        dog.destroy!
+        Record::Destroy.call(
+          model: Dog,
+          current_user:,
+          id: params[:id]
+        )
 
         head :no_content
       end

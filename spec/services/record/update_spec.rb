@@ -2,9 +2,10 @@
 
 require "rails_helper"
 
-RSpec.describe Dog::Update, type: :service do
-  subject(:service) { described_class.call(current_user:, id: dog.id, attributes:) }
+RSpec.describe Record::Update, type: :service do
+  subject(:service) { described_class.call(model:, current_user:, id: dog.id, attributes:) }
 
+  let(:model) { Dog }
   let(:dog) { create(:dog, name: "Luke", user:) }
   let(:user) { create(:user) }
 

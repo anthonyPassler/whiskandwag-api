@@ -2,11 +2,12 @@
 
 require "rails_helper"
 
-RSpec.describe Dog::Create, type: :service do
-  subject(:service) { described_class.call(current_user:, attributes:) }
+RSpec.describe Record::Create, type: :service do
+  subject(:service) { described_class.call(model:, current_user:, attributes:) }
 
   let(:current_user) { create(:user) }
   let(:attributes) { { name: "Howard" } }
+  let(:model) { Dog }
 
   context "with valid attributes" do
     it "creates a dog" do

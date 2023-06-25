@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Dog
-  class Create
+  module Create
     class Schema < BaseSchema
       json do
         required(:name).filled(:string)
