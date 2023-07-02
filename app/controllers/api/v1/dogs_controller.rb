@@ -37,7 +37,8 @@ module API
           model: Dog,
           current_user:,
           id: params[:id],
-          attributes:
+          attributes:,
+          relationships:
         ).result
 
         render json: DogSerializer.new(dog)

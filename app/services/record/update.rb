@@ -3,14 +3,34 @@
 module Record
   class Update < ApplicationService
     def call
-      valid_attributes = model::Update::Schema.call!(**attributes)
-
       instance = model.find(id)
       authorize(instance, :update?)
-      instance.assign_attributes(**valid_attributes)
+
+      add_attributes!(instance) if attributes.present?
+
+      add_relationships!(instance) if relationships.present?
+
       instance.save!
 
       add_service_result(instance)
+    end
+
+    private
+
+    def add_attributes!(instance)
+      valid_attributes = model::Update::Schema.call!(**attributes)
+
+      instance.assign_attributes(**valid_attributes)
+    end
+
+    def add_relationships!(instance)
+      relationships.each_key do |key|
+        value = relationships[key][:data]
+        id = value[:id]
+        relationship = key.to_s.classify.constantize.find(id)
+
+        instance.send("#{key}=", relationship)
+      end
     end
   end
 end

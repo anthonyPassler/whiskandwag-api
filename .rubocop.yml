@@ -36,3 +36,6 @@ Rails/DeprecatedActiveModelErrorsMethods:
 
 RSpec/LetSetup:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
