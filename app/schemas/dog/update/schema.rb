@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Dog
-  class Update
+  module Update
     class Schema < BaseSchema
       json do
         optional(:name).filled(:string)

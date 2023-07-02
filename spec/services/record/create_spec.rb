@@ -2,11 +2,13 @@
 
 require "rails_helper"
 
-RSpec.describe Dog::Create, type: :service do
-  subject(:service) { described_class.call(current_user:, attributes:) }
+RSpec.describe Record::Create, type: :service do
+  subject(:service) { described_class.call(model:, current_user:, attributes:, relationships:) }
 
   let(:current_user) { create(:user) }
   let(:attributes) { { name: "Howard" } }
+  let(:relationships) { nil }
+  let(:model) { Dog }
 
   context "with valid attributes" do
     it "creates a dog" do
@@ -16,6 +18,24 @@ RSpec.describe Dog::Create, type: :service do
     it "returns a dog with the correct attributes" do
       expect(service.result).to be_a(Dog)
       expect(service.result.name).to eq("Howard")
+    end
+
+    context "with valid relationships" do
+      let(:relationships) do
+        {
+          user: {
+            data: {
+              id: current_user.id,
+              type: "user"
+            }
+          }
+        }
+      end
+
+      it "creates a dog with the correct relationships" do
+        expect { service }.to change(Dog, :count).by(1)
+        expect(service.result.user).to eq(current_user)
+      end
     end
   end
 
