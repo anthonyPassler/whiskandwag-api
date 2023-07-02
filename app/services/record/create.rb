@@ -18,9 +18,8 @@ module Record
     private
 
     def add_relationships!(instance)
-      relationships.keys.each do |key|
+      relationships.each_key do |key|
         value = relationships[key][:data]
-        type = value[:type]
         id = value[:id]
         relationship = key.to_s.classify.constantize.find(id)
 
