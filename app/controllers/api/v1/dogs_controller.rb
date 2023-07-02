@@ -25,7 +25,8 @@ module API
         dog = Record::Create.call(
           model: Dog,
           current_user:,
-          attributes:
+          attributes:,
+          relationships:
         ).result
 
         render json: DogSerializer.new(dog)

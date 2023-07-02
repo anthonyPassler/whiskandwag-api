@@ -47,6 +47,27 @@
                             "type": "string"
                           }
                         }
+                      },
+                      "relationships": {
+                        "type": "object",
+                        "properties": {
+                          "user": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }

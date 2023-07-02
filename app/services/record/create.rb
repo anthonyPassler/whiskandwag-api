@@ -7,9 +7,25 @@ module Record
 
       instance = model.new(**valid_attributes)
       authorize(instance, :create?)
+
+      add_relationships!(instance) if relationships.present?
+
       instance.save!
 
       add_service_result(instance)
+    end
+
+    private
+
+    def add_relationships!(instance)
+      relationships.keys.each do |key|
+        value = relationships[key][:data]
+        type = value[:type]
+        id = value[:id]
+        relationship = key.to_s.classify.constantize.find(id)
+
+        instance.send("#{key}=", relationship)
+      end
     end
   end
 end

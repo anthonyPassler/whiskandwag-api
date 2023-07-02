@@ -29,6 +29,23 @@ RSpec.describe "api/v1/dogs" do
                   name: { type: :string },
                   breed: { type: :string }
                 }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  user: {
+                    type: :object,
+                    properties: {
+                      data: {
+                        type: :object,
+                        properties: {
+                          id: { type: :string },
+                          type: { type: :string }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -38,7 +55,25 @@ RSpec.describe "api/v1/dogs" do
       produces "application/json"
 
       response(200, "successful") do
-        let(:dog) { { data: { attributes: { name: "Fido", breed: "Labrador" } } } }
+        let(:user) { create(:user) }
+        let(:dog) do
+          {
+            data: {
+              attributes: {
+                name: "Fido",
+                breed: "Labrador"
+              },
+              relationships: {
+                user: {
+                  data: {
+                    id: user.id,
+                    type: "user"
+                  }
+                }
+              }
+            }
+          }
+        end
 
         include_context "with integration test"
       end
