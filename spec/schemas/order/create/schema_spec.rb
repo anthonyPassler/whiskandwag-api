@@ -64,4 +64,15 @@ RSpec.describe Order::Create::Schema, type: :schema do
       it_behaves_like "invalid data", "frequency_in_weeks", [nil, "", "lots", true, 0, -1, 10.3, 100_000_001]
     end
   end
+
+  describe "relationships" do
+    context "with valid relationships" do
+      it_behaves_like "valid data", "relationships",
+                      [{ user: { data: { id: "e1777686-2fd5-11ee-be56-0242ac120002", type: "users" } } }]
+    end
+
+    context "with invalid relationships" do
+      it_behaves_like "invalid data", "relationships", [nil, true, "cool age", "100", 1_000_000, { user: {} }]
+    end
+  end
 end
