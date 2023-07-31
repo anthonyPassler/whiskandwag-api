@@ -15,6 +15,10 @@ class Dog
         optional(:allergies).filled(:array).each(:string)
         optional(:kcal_per_day).filled(:integer, lt?: 100_000)
         optional(:food_portion_in_grams).filled(:integer, lt?: 100_000)
+
+        optional(:relationships).maybe(:hash) do
+          required(:user).schema(Generic::Relationships::Schema.new)
+        end
       end
     end
   end

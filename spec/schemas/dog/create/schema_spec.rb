@@ -117,4 +117,15 @@ RSpec.describe Dog::Create::Schema, type: :schema do
       it_behaves_like "invalid data", "food_portion_in_grams", [nil, true, "cool age", "100", 1_000_000]
     end
   end
+
+  describe "relationships" do
+    context "with valid relationships" do
+      it_behaves_like "valid data", "relationships",
+                      [{ user: { data: { id: "e1777686-2fd5-11ee-be56-0242ac120002", type: "users" } } }]
+    end
+
+    context "with invalid relationships" do
+      it_behaves_like "invalid data", "relationships", [true, "cool age", "100", 1_000_000, { user: {} }]
+    end
+  end
 end
