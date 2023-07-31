@@ -18,9 +18,9 @@ module Record
     private
 
     def add_attributes!(instance)
-      valid_attributes = model::Update::Schema.call!(**attributes)
+      valid_attributes = model::Update::Schema.call!(**attributes, relationships:)
 
-      instance.assign_attributes(**valid_attributes)
+      instance.assign_attributes(**valid_attributes.except(:relationships))
     end
 
     def add_relationships!(instance)
