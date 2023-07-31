@@ -5,4 +5,6 @@ class OrderSerializer < ApplicationSerializer
   attribute(:frequency_in_weeks)
   attribute(:portions)
   attribute(:portion_weight_in_grams)
+
+  has_one(:user)
 end

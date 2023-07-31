@@ -1,0 +1,43 @@
+{
+      :data => {
+               :id => "8232232d-88c5-4b4e-bb8c-265d54cbc3ee",
+             :type => :order,
+       :attributes => {
+                  :total_price => 57.66,
+           :frequency_in_weeks => nil,
+                     :portions => 83,
+      :portion_weight_in_grams => 3726
+    },
+    :relationships => {
+      :user => {
+        :data => {
+            :id => "63fb9319-f973-4404-9eda-c16a8933f6aa",
+          :type => :user
+        }
+      }
+    }
+  },
+  :included => [
+    [0] {
+                 :id => "63fb9319-f973-4404-9eda-c16a8933f6aa",
+               :type => :user,
+         :attributes => {
+             :email => "genny@cartwright.io",
+        :first_name => nil,
+         :last_name => nil,
+           :address => nil,
+              :city => nil,
+          :zip_code => nil,
+         :telephone => nil
+      },
+      :relationships => {
+           :dogs => {
+          :data => []
+        },
+        :reviews => {
+          :data => []
+        }
+      }
+    }
+  ]
+}
