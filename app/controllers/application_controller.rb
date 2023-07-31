@@ -9,6 +9,11 @@ class ApplicationController < ActionController::API
   rescue_from ApplicationSchema::ValidationSchemaError, with: :unprocessable_entity
   rescue_from ApplicationService::ServiceError, with: :unprocessable_entity
 
+  # TODO: Remove this method when authentication is implemented - will be added as a microservice
+  def current_user
+    User.first
+  end
+
   private
 
   def attributes
