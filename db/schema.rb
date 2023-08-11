@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_10_124347) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_062403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -45,15 +45,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_124347) do
 
   create_table "recipes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.integer "kcal_per_100g"
-    t.string "ingredients", default: [], null: false, array: true
-    t.string "allergens", default: [], null: false, array: true
+    t.integer "calories_per_100g"
+    t.text "ingredients"
     t.decimal "fat_percentage"
-    t.string "fussiness_levels", default: [], null: false, array: true
-    t.string "health_issues", default: [], null: false, array: true
     t.string "image_url"
-    t.boolean "is_selected", default: false, null: false
-    t.decimal "price"
+    t.decimal "price_per_100g"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

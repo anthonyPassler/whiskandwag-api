@@ -2,11 +2,9 @@
 
 class RecipeSerializer < ApplicationSerializer
   attribute(:name)
-  attribute(:kcal_per_100g)
+  attribute(:calories_per_100g)
   attribute(:ingredients)
-  attribute(:allergens)
   attribute(:fat_percentage)
-  attribute(:is_selected)
   attribute(:image_url)
-  attribute(:price)
+  attribute(:price_per_100g)
 end
