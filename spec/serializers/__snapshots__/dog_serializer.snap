@@ -3,17 +3,16 @@
                :id => "8232232d-88c5-4b4e-bb8c-265d54cbc3ee",
              :type => :dog,
        :attributes => {
-                       :name => "Maryanne",
-                      :breed => "Coonhound",
-                     :weight => 20,
-                        :age => 8,
-                     :gender => "female",
-            :fussiness_level => nil,
-              :health_issues => [],
-             :activity_level => nil,
-                  :allergies => [],
-               :kcal_per_day => nil,
-      :food_portion_in_grams => nil
+                            :name => "Maryanne",
+                           :breed => "Coonhound",
+                          :weight => 20,
+                   :age_in_months => 60,
+                          :gender => "female",
+                 :fussiness_level => nil,
+                  :activity_level => nil,
+      :recommended_daily_calories => nil,
+           :food_portion_in_grams => nil,
+                     :sterialized => nil
     },
     :relationships => {
       :user => {

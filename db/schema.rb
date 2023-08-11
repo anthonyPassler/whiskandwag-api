@@ -10,30 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_191106) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_10_124347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "dogs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "dogs", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "breed"
     t.integer "weight"
-    t.integer "age"
+    t.integer "age_in_months"
     t.string "gender"
     t.string "fussiness_level"
-    t.string "health_issues", default: [], null: false, array: true
     t.string "activity_level"
-    t.string "allergies", default: [], null: false, array: true
-    t.integer "kcal_per_day"
+    t.integer "recommended_daily_calories"
     t.integer "food_portion_in_grams"
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "sterialized"
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
-  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "orders", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.decimal "total_price", precision: 10, scale: 2
     t.integer "portions"
     t.integer "portion_weight_in_grams"
@@ -44,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_191106) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "recipes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "recipes", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.integer "kcal_per_100g"
     t.string "ingredients", default: [], null: false, array: true
@@ -59,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_191106) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "reviews", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.text "description"
     t.decimal "rating"
     t.string "image_url"
@@ -69,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_191106) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
