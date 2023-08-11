@@ -7,7 +7,7 @@ FactoryBot.define do
     breed { Faker::Creature::Dog.breed }
 
     weight { 20 }
-    age { 8 }
+    age_in_months { 60 }
     gender { "female" }
   end
 end

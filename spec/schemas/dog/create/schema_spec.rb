@@ -38,13 +38,13 @@ RSpec.describe Dog::Create::Schema, type: :schema do
     end
   end
 
-  describe "age" do
+  describe "age_in_months" do
     context "with valid attributes" do
-      it_behaves_like "valid data", "age", [1, 100, 999]
+      it_behaves_like "valid data", "age_in_months", [1, 100, 999]
     end
 
     context "with invalid attributes" do
-      it_behaves_like "invalid data", "age", [nil, true, "cool age", "100", 1000]
+      it_behaves_like "invalid data", "age_in_months", [nil, true, "cool age", "100", 1000]
     end
   end
 
@@ -68,16 +68,6 @@ RSpec.describe Dog::Create::Schema, type: :schema do
     end
   end
 
-  describe "health_issues" do
-    context "with valid attributes" do
-      it_behaves_like "valid data", "health_issues", [%w[cancer diabetes], ["anything"]]
-    end
-
-    context "with invalid attributes" do
-      it_behaves_like "invalid data", "health_issues", [nil, true, 1000]
-    end
-  end
-
   describe "activity_level" do
     context "with valid attributes" do
       it_behaves_like "valid data", "activity_level", %w[low medium high very_high]
@@ -88,23 +78,13 @@ RSpec.describe Dog::Create::Schema, type: :schema do
     end
   end
 
-  describe "allergies" do
+  describe "recommended_daily_calories" do
     context "with valid attributes" do
-      it_behaves_like "valid data", "allergies", [%w[gluten lactose], ["anything"]]
+      it_behaves_like "valid data", "recommended_daily_calories", [1, 100, 999]
     end
 
     context "with invalid attributes" do
-      it_behaves_like "invalid data", "allergies", [nil, true, 1000, "just a string"]
-    end
-  end
-
-  describe "kcal_per_day" do
-    context "with valid attributes" do
-      it_behaves_like "valid data", "kcal_per_day", [1, 100, 999]
-    end
-
-    context "with invalid attributes" do
-      it_behaves_like "invalid data", "kcal_per_day", [nil, true, "cool age", "100", 1_000_000]
+      it_behaves_like "invalid data", "recommended_daily_calories", [nil, true, "cool age", "100", 1_000_000]
     end
   end
 

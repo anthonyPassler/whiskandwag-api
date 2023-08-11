@@ -15,9 +15,8 @@ RSpec.describe Record::Update, type: :service do
     it do
       expect(service.result.breed).to eq("Poodle")
       expect(service.result.weight).to eq(10)
-      expect(service.result.age).to eq(5)
-      expect(service.result.allergies).to eq(["gluten"])
-      expect(service.result.kcal_per_day).to eq(1000)
+      expect(service.result.age_in_months).to eq(60)
+      expect(service.result.recommended_daily_calories).to eq(1000)
     end
   end
 
@@ -37,9 +36,8 @@ RSpec.describe Record::Update, type: :service do
           {
             breed: "Poodle",
             weight: 10,
-            age: 5,
-            allergies: ["gluten"],
-            kcal_per_day: 1000
+            age_in_months: 60,
+            recommended_daily_calories: 1000
           }
         end
 
@@ -73,9 +71,8 @@ RSpec.describe Record::Update, type: :service do
             {
               breed: "Poodle",
               weight: 10,
-              age: 5,
-              allergies: ["gluten"],
-              kcal_per_day: 1000
+              age_in_months: 60,
+              recommended_daily_calories: 1000
             }
           end
 
@@ -95,9 +92,8 @@ RSpec.describe Record::Update, type: :service do
             {
               breed: "Poodle",
               weight: 10,
-              age: 5,
-              allergies: ["gluten"],
-              kcal_per_day: 1000
+              age_in_months: 60,
+              recommended_daily_calories: 1000
             }
           end
 

@@ -4,14 +4,13 @@ class DogSerializer < ApplicationSerializer
   attribute(:name)
   attribute(:breed)
   attribute(:weight)
-  attribute(:age)
+  attribute(:age_in_months)
   attribute(:gender)
   attribute(:fussiness_level)
-  attribute(:health_issues)
   attribute(:activity_level)
-  attribute(:allergies)
-  attribute(:kcal_per_day)
+  attribute(:recommended_daily_calories)
   attribute(:food_portion_in_grams)
+  attribute(:sterialized)
 
   has_one(:user)
 end
