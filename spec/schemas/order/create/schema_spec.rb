@@ -7,18 +7,23 @@ RSpec.describe Order::Create::Schema, type: :schema do
   subject { described_class.call!(data) }
 
   let(:user) { create(:user) }
+  let(:dog) { create(:dog, user:) }
 
   let(:required_attributes) do
     {
       total_price: 1000.20,
-      portions: 5,
-      portion_weight_in_grams: 500,
       frequency_in_weeks: 4,
       relationships: {
         user: {
           data: {
             id: user.id,
             type: "users"
+          }
+        },
+        dog: {
+          data: {
+            id: dog.id,
+            type: "dogs"
           }
         }
       }
@@ -35,26 +40,6 @@ RSpec.describe Order::Create::Schema, type: :schema do
     end
   end
 
-  describe "portions" do
-    context "with valid attributes" do
-      it_behaves_like "valid data", "portions", [5]
-    end
-
-    context "with invalid attributes" do
-      it_behaves_like "invalid data", "portions", [nil, "", "lots", true, 0, -1, 10.3, 100_000_001]
-    end
-  end
-
-  describe "portion_weight_in_grams" do
-    context "with valid attributes" do
-      it_behaves_like "valid data", "portion_weight_in_grams", [500]
-    end
-
-    context "with invalid attributes" do
-      it_behaves_like "invalid data", "portion_weight_in_grams", [nil, "", "lots", true, 0, -1, 10.3, 100_000_001]
-    end
-  end
-
   describe "frequency_in_weeks" do
     context "with valid attributes" do
       it_behaves_like "valid data", "frequency_in_weeks", [4]
@@ -68,7 +53,22 @@ RSpec.describe Order::Create::Schema, type: :schema do
   describe "relationships" do
     context "with valid relationships" do
       it_behaves_like "valid data", "relationships",
-                      [{ user: { data: { id: "e1777686-2fd5-11ee-be56-0242ac120002", type: "users" } } }]
+                      [
+                        {
+                          user: {
+                            data: {
+                              id: "e1777686-2fd5-11ee-be56-0242ac120002",
+                              type: "users"
+                            }
+                          },
+                          dog: {
+                            data: {
+                              id: "e1777686-2fd5-11ee-be56-0242ac120003",
+                              type: "dogs"
+                            }
+                          }
+                        }
+                      ]
     end
 
     context "with invalid relationships" do
