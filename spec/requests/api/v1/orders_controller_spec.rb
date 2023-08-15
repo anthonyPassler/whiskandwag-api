@@ -26,8 +26,7 @@ RSpec.describe "api/v1/orders" do
               attributes: {
                 type: :object,
                 properties: {
-                  total_price: { type: :number },
-                  frequency_in_weeks: { type: :integer }
+                  total_price: { type: :number }
                 }
               },
               relationships: {
@@ -62,7 +61,7 @@ RSpec.describe "api/v1/orders" do
             }
           }
         },
-        required: %w[total_price frequency_in_weeks user dog]
+        required: %w[total_price user dog]
       }
       produces "application/json"
 
@@ -73,8 +72,7 @@ RSpec.describe "api/v1/orders" do
           {
             data: {
               attributes: {
-                total_price: 1234.56,
-                frequency_in_weeks: 4
+                total_price: 1234.56
               },
               relationships: {
                 user: {
@@ -98,7 +96,7 @@ RSpec.describe "api/v1/orders" do
       end
 
       response(422, "unprocessable entity") do
-        let(:order) { { data: { attributes: { total_price: nil, frequency_in_weeks: nil } } } }
+        let(:order) { { data: { attributes: { total_price: nil } } } }
 
         include_context "with integration test"
       end
@@ -141,8 +139,7 @@ RSpec.describe "api/v1/orders" do
               attributes: {
                 type: :object,
                 properties: {
-                  total_price: { type: :number },
-                  frequency_in_weeks: { type: :integer }
+                  total_price: { type: :number }
                 }
               }
             }
@@ -160,8 +157,7 @@ RSpec.describe "api/v1/orders" do
           {
             data: {
               attributes: {
-                total_price: 1234.56,
-                frequency_in_weeks: 4
+                total_price: 1234.56
               },
               relationships: {
                 user: {
@@ -189,7 +185,7 @@ RSpec.describe "api/v1/orders" do
         let(:dog) { create(:dog, user:) }
         let(:order_to_update) { create(:order, user:, dog:) }
         let(:id) { order_to_update.id }
-        let(:order) { { data: { attributes: { total_price: nil, frequency_in_weeks: nil } } } }
+        let(:order) { { data: { attributes: { total_price: nil } } } }
 
         include_context "with integration test"
       end

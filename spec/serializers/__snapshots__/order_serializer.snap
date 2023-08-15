@@ -3,8 +3,10 @@
                :id => "c545ae6c-ede9-4c40-8401-0b496513f181",
              :type => :order,
        :attributes => {
-             :total_price => 83.28,
-      :frequency_in_weeks => nil
+        :total_price => 83.28,
+       :fulfilled_at => nil,
+      :dispatch_date => nil,
+             :status => nil
     },
     :relationships => {
       :user => {

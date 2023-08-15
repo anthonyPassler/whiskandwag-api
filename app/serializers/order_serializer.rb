@@ -2,7 +2,9 @@
 
 class OrderSerializer < ApplicationSerializer
   attribute(:total_price)
-  attribute(:frequency_in_weeks)
+  attribute(:fulfilled_at)
+  attribute(:dispatch_date)
+  attribute(:status)
 
   has_one(:user)
   has_one(:dog)
