@@ -237,9 +237,6 @@
                         "properties": {
                           "total_price": {
                             "type": "number"
-                          },
-                          "frequency_in_weeks": {
-                            "type": "integer"
                           }
                         }
                       },
@@ -284,9 +281,8 @@
                   }
                 },
                 "required": [
-                  "total_price,",
-                  "frequency_in_weeks,",
-                  "user,",
+                  "total_price",
+                  "user",
                   "dog"
                 ]
               }
@@ -353,9 +349,6 @@
                         "properties": {
                           "total_price": {
                             "type": "number"
-                          },
-                          "frequency_in_weeks": {
-                            "type": "integer"
                           }
                         }
                       }
@@ -383,6 +376,40 @@
         "responses": {
           "204": {
             "description": "no content"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/api/v1/recipes": {
+      "get": {
+        "summary": "list recipes",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/recipes/{id}": {
+      "get": {
+        "summary": "show recipe",
+        "description": "Shows a recipe",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
           },
           "404": {
             "description": "not found"

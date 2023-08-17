@@ -2,12 +2,14 @@
 
 class RecipePolicy < ApplicationPolicy
   def show?
-    true
+    user.present?
   end
 
   class Scope < Scope
     def resolve
-      scope.all
+      return scope.all if user.present?
+
+      scope.none
     end
   end
 end
