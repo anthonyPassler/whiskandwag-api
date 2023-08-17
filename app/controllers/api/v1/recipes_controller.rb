@@ -12,8 +12,11 @@ module API
       end
 
       def show
-        recipe = Recipe.find(params[:id])
-        authorize recipe
+        recipe = Record::Get.call(
+          model: Recipe,
+          current_user:,
+          id: params[:id]
+        ).result
 
         render json: RecipeSerializer.new(recipe)
       end

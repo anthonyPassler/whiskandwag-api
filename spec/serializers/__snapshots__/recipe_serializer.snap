@@ -1,0 +1,14 @@
+{
+  :data => {
+            :id => "63fb9319-f973-4404-9eda-c16a8933f6aa",
+          :type => :recipe,
+    :attributes => {
+                   :name => "Pizza",
+      :calories_per_100g => 384,
+            :ingredients => "Tofu",
+         :fat_percentage => 16.91,
+              :image_url => nil,
+         :price_per_100g => 55.81
+    }
+  }
+}
