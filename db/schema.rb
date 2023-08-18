@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_071638) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_18_054844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_071638) do
     t.uuid "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["dog_id", "recipe_id"], name: "index_recommended_recipes_on_dog_id_and_recipe_id", unique: true
     t.index ["dog_id"], name: "index_recommended_recipes_on_dog_id"
     t.index ["recipe_id"], name: "index_recommended_recipes_on_recipe_id"
   end
