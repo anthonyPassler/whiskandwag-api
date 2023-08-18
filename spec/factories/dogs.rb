@@ -9,5 +9,9 @@ FactoryBot.define do
     weight { 20 }
     age_in_months { 60 }
     gender { "female" }
+
+    trait(:with_user) do
+      user { create(:user) }
+    end
   end
 end

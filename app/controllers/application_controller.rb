@@ -16,6 +16,10 @@ class ApplicationController < ActionController::API
 
   private
 
+  def options
+    {}.merge(params[:include].present? ? { include: params[:include].split(",") } : {})
+  end
+
   def attributes
     request.request_parameters.dig("data", "attributes")
   end
