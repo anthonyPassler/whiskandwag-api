@@ -17,6 +17,10 @@ class DogPolicy < ApplicationPolicy
     user.present? && user_is_owner?
   end
 
+  def show_allergies_relationship?
+    show?
+  end
+
   class Scope < Scope
     def resolve
       return scope.none if user.nil?
