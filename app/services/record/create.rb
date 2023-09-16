@@ -6,9 +6,10 @@ module Record
       valid_attributes = model::Create::Schema.call!(**attributes, relationships:)
 
       instance = model.new(**valid_attributes.except(:relationships))
-      authorize(instance, :create?)
 
       add_relationships!(instance) if relationships.present?
+
+      authorize(instance, :create?)
 
       instance.save!
 
