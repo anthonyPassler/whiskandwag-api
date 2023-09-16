@@ -122,6 +122,38 @@
         }
       }
     },
+    "/api/v1/dogs/{dog_id}/allergies/{allergen_id}": {
+      "delete": {
+        "summary": "destroy dog allergy",
+        "description": "Destroys a dog allergy",
+        "parameters": [
+          {
+            "name": "dog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "allergen_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/api/v1/dogs": {
       "get": {
         "summary": "list dogs",

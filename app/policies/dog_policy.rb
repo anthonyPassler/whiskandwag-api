@@ -36,6 +36,8 @@ class DogPolicy < ApplicationPolicy
   end
 
   def user_is_owner?
+    return false if record.user.nil?
+
     record.user == user
   end
 end
