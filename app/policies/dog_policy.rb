@@ -21,6 +21,10 @@ class DogPolicy < ApplicationPolicy
     show?
   end
 
+  def show_recipes_relationship?
+    show?
+  end
+
   class Scope < Scope
     def resolve
       return scope.none if user.nil?
