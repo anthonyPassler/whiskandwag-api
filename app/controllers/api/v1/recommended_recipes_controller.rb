@@ -6,9 +6,14 @@ module API
       skip_before_action :authenticate_user!, only: %i[index]
 
       def index
-        recommended_recipes = policy_scope(RecommendedRecipe.where(dog_id: params[:dog_id]))
+        recommended_recipes = Record::GetRelationship.call(
+          model: Dog,
+          current_user:,
+          id: params[:dog_id],
+          relationship: :recipes
+        )
 
-        render json: RecommendedRecipeSerializer.new(recommended_recipes, options)
+        render json: RecipeSerializer.new(recommended_recipes)
       end
     end
   end
