@@ -1,0 +1,10 @@
+{
+  :data => {
+            :id => "63fb9319-f973-4404-9eda-c16a8933f6aa",
+          :type => :medical_condition,
+    :attributes => {
+             :name => "Pizza",
+      :description => "28-day aged 300g USDA Certified Prime Ribeye, rosemary-thyme garlic butter, with choice of two sides."
+    }
+  }
+}

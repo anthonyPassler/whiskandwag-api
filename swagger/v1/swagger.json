@@ -349,6 +349,40 @@
         }
       }
     },
+    "/api/v1/medical_conditions": {
+      "get": {
+        "summary": "list medical conditions",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/medical_conditions/{id}": {
+      "get": {
+        "summary": "show medical_condition",
+        "description": "Shows a medical condition",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/api/v1/orders": {
       "get": {
         "summary": "list orders",

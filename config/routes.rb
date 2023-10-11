@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :orders, only: %i[index show create update destroy]
       resources :sessions, only: %i[create destroy]
       resources :allergens, only: %i[index show]
+      resources :medical_conditions, only: %i[index show]
     end
   end
 end

@@ -11,7 +11,9 @@ Recipe.destroy_all
 Review.destroy_all
 Order.destroy_all
 User.destroy_all
+DogAllergy.destroy_all
 Allergen.destroy_all
+MedicalCondition.destroy_all
 
 user = User.create(email: "passleranthony@yahoo.com", password: "password", first_name: "Anthony",
                    last_name: "Passler", address: "1234 Main St", city: "Denver", zip_code: "80202", telephone: "303-555-5555")
@@ -28,5 +30,8 @@ RecommendedRecipe.create(dog_id: dog.id, recipe_id: recipe2.id)
 Allergen.create(name: "peanuts")
 Allergen.create(name: "soy")
 Allergen.create(name: "wheat")
+MedicalCondition.create(name: "diabetes", description: "diabetes")
+MedicalCondition.create(name: "kidney disease", description: "kidney disease")
+MedicalCondition.create(name: "liver disease", description: "liver disease")
 
 puts "Done!"
