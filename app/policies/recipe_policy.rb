@@ -5,6 +5,10 @@ class RecipePolicy < ApplicationPolicy
     user.present?
   end
 
+  def show_allergens_relationship?
+    show?
+  end
+
   class Scope < Scope
     def resolve
       return scope.all if user.present?

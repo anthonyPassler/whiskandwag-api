@@ -11,7 +11,7 @@ RSpec.describe RecipePolicy, type: :policy do
   context "without a logged in user" do
     let(:current_user) { nil }
 
-    it { is_expected.to forbid_actions %i[show] }
+    it { is_expected.to forbid_actions %i[show show_allergens_relationship] }
 
     it "does not include recipe in resolved scope" do
       expect(resolved_scope).not_to include(recipe)
@@ -21,7 +21,7 @@ RSpec.describe RecipePolicy, type: :policy do
   context "with a logged in user" do
     let(:current_user) { create(:user) }
 
-    it { is_expected.to permit_actions %i[show] }
+    it { is_expected.to permit_actions %i[show show_allergens_relationship] }
 
     it "does include recipe in resolved scope" do
       expect(resolved_scope).to include(recipe)
