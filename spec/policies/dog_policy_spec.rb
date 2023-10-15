@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe DogPolicy, type: :policy do
-  subject { described_class.new(current_user, dog) }
+  subject(:dog_policy) { described_class.new(current_user, dog) }
 
   let(:dog) { create(:dog, user: current_user) }
   let(:resolved_scope) { described_class::Scope.new(current_user, Dog.all).resolve }
@@ -14,7 +14,11 @@ RSpec.describe DogPolicy, type: :policy do
     it { is_expected.to permit_action(:create) }
 
     context "when dog has no owner" do
-      it { is_expected.to permit_actions %i[show update] }
+      it do
+        expect(dog_policy).to permit_actions %i[show update show_allergies_relationship show_recipes_relationship
+                                                show_medical_conditions_relationship]
+      end
+
       it { is_expected.to forbid_action(:destroy) }
 
       it "does not include dog in resolved scope" do
@@ -26,7 +30,10 @@ RSpec.describe DogPolicy, type: :policy do
       let(:dog_user) { create(:user) }
       let(:dog) { create(:dog, user: dog_user) }
 
-      it { is_expected.to forbid_actions %i[show update destroy] }
+      it do
+        expect(dog_policy).to forbid_actions %i[show update destroy show_allergies_relationship
+                                                show_recipes_relationship show_medical_conditions_relationship]
+      end
     end
   end
 
@@ -36,7 +43,10 @@ RSpec.describe DogPolicy, type: :policy do
     it { is_expected.to permit_action(:create) }
 
     context "when current_user is the owner" do
-      it { is_expected.to permit_actions %i[show update destroy] }
+      it do
+        expect(dog_policy).to permit_actions %i[show update destroy show_allergies_relationship
+                                                show_recipes_relationship show_medical_conditions_relationship]
+      end
 
       it "includes dog in resolved scope" do
         expect(resolved_scope).to include(dog)
@@ -47,7 +57,10 @@ RSpec.describe DogPolicy, type: :policy do
       let(:dog_user) { create(:user) }
       let(:dog) { create(:dog, user: dog_user) }
 
-      it { is_expected.to forbid_actions %i[show update destroy] }
+      it do
+        expect(dog_policy).to forbid_actions %i[show update destroy show_allergies_relationship
+                                                show_recipes_relationship show_medical_conditions_relationship]
+      end
 
       it "does not include dog in resolved scope" do
         expect(resolved_scope).not_to include(dog)

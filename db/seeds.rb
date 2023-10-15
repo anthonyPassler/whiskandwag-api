@@ -13,6 +13,7 @@ Order.destroy_all
 User.destroy_all
 DogAllergy.destroy_all
 Allergen.destroy_all
+DogMedicalCondition.destroy_all
 MedicalCondition.destroy_all
 
 user = User.create(email: "passleranthony@yahoo.com", password: "password", first_name: "Anthony",
@@ -33,5 +34,7 @@ Allergen.create(name: "wheat")
 MedicalCondition.create(name: "diabetes", description: "diabetes")
 MedicalCondition.create(name: "kidney disease", description: "kidney disease")
 MedicalCondition.create(name: "liver disease", description: "liver disease")
+DogMedicalCondition.create(dog_id: dog.id, medical_condition_id: MedicalCondition.first.id)
+DogMedicalCondition.create(dog_id: dog.id, medical_condition_id: MedicalCondition.last.id)
 
 puts "Done!"
