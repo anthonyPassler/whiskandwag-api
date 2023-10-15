@@ -12,6 +12,7 @@ Review.destroy_all
 Order.destroy_all
 User.destroy_all
 DogAllergy.destroy_all
+RecipeAllergen.destroy_all
 Allergen.destroy_all
 DogMedicalCondition.destroy_all
 MedicalCondition.destroy_all
@@ -36,5 +37,7 @@ MedicalCondition.create(name: "kidney disease", description: "kidney disease")
 MedicalCondition.create(name: "liver disease", description: "liver disease")
 DogMedicalCondition.create(dog_id: dog.id, medical_condition_id: MedicalCondition.first.id)
 DogMedicalCondition.create(dog_id: dog.id, medical_condition_id: MedicalCondition.last.id)
+RecipeAllergen.create(recipe_id: recipe1.id, allergen_id: Allergen.first.id)
+RecipeAllergen.create(recipe_id: recipe1.id, allergen_id: Allergen.last.id)
 
 puts "Done!"

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :recipes, only: %i[index show]
+      resources :recipes, only: %i[index show] do
+        resources :allergens, only: %i[index], controller: "recipe_allergens"
+      end
       resources :dogs, only: %i[index show create update destroy] do
         resources :recommended_recipes, only: %i[index]
         resources :allergies, only: %i[index create destroy], controller: "dog_allergies"
