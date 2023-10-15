@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :dogs, only: %i[index show create update destroy] do
         resources :recommended_recipes, only: %i[index]
         resources :allergies, only: %i[index create destroy], controller: "dog_allergies"
+        resources :medical_conditions, only: %i[index create destroy], controller: "dog_medical_conditions"
       end
       resources :reviews, only: %i[index show]
       resources :orders, only: %i[index show create update destroy]

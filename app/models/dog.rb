@@ -8,4 +8,6 @@ class Dog < ApplicationRecord
   has_many :recipes, through: :recommended_recipes
   has_many :dog_allergies, dependent: :destroy
   has_many :allergies, through: :dog_allergies, source: :allergen
+  has_many :dog_medical_conditions, dependent: :destroy
+  has_many :medical_conditions, through: :dog_medical_conditions
 end
