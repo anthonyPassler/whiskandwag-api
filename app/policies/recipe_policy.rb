@@ -9,6 +9,10 @@ class RecipePolicy < ApplicationPolicy
     show?
   end
 
+  def show_medical_condition_exclusions_relationship?
+    show?
+  end
+
   class Scope < Scope
     def resolve
       return scope.all if user.present?

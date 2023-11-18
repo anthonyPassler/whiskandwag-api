@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe RecipePolicy, type: :policy do
-  subject { described_class.new(current_user, recipe) }
+  subject(:recipe_policy) { described_class.new(current_user, recipe) }
 
   let(:recipe) { create(:recipe) }
   let(:resolved_scope) { described_class::Scope.new(current_user, Recipe.all).resolve }
@@ -11,7 +11,11 @@ RSpec.describe RecipePolicy, type: :policy do
   context "without a logged in user" do
     let(:current_user) { nil }
 
-    it { is_expected.to forbid_actions %i[show show_allergens_relationship] }
+    it do
+      expect(recipe_policy).to(
+        forbid_actions(%i[show show_allergens_relationship show_medical_condition_exclusions_relationship])
+      )
+    end
 
     it "does not include recipe in resolved scope" do
       expect(resolved_scope).not_to include(recipe)
@@ -21,7 +25,11 @@ RSpec.describe RecipePolicy, type: :policy do
   context "with a logged in user" do
     let(:current_user) { create(:user) }
 
-    it { is_expected.to permit_actions %i[show show_allergens_relationship] }
+    it do
+      expect(recipe_policy).to(
+        permit_actions(%i[show show_allergens_relationship show_medical_condition_exclusions_relationship])
+      )
+    end
 
     it "does include recipe in resolved scope" do
       expect(resolved_scope).to include(recipe)
