@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipes, only: %i[index show] do
         resources :allergens, only: %i[index], controller: "recipe_allergens"
+        resources :medical_condition_exclusions, only: %i[index], controller: "recipe_medical_condition_exclusions"
       end
       resources :dogs, only: %i[index show create update destroy] do
         resources :recommended_recipes, only: %i[index]

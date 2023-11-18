@@ -702,6 +702,27 @@
         }
       }
     },
+    "/api/v1/recipes/{id}/medical_condition_exclusions": {
+      "get": {
+        "summary": "list recipe medical condition exclusions",
+        "description": "List of recipe medical condition exclusions",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/api/v1/recipes": {
       "get": {
         "summary": "list recipes",
